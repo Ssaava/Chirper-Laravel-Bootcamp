@@ -7,10 +7,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+// create a relationship between a user and the Chirp stored in the database
+use Illuminate\Database\Eloquent\Relations\HasMany;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    // create the hasMany function here
+    public function chirps(): HasMany
+    {
+        return $this->hasMany(Chirp::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

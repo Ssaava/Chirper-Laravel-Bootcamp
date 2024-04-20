@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 // now test the Controller by returning a view
 use Illuminate\View\View;
 
+// add a new redirect response that will be used in the CRUD operations 
+use Illuminate\Http\RedirectResponse;
+
 class ChirpController extends Controller
 {
     /**
@@ -35,9 +38,14 @@ class ChirpController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'message'=>'required|string|max:255',
+        ]);
+        $request->user()->chirps()->create($validated);
+        
+        return redirect(route("chirps.index"));
     }
 
     /**
