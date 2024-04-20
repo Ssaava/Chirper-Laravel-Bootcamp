@@ -20,6 +20,6 @@ Route::middleware('auth')->group(function () {
 
 // create a new route for the Chirp controller
 Route::resource("/chirps", ChirpController::class)
-    ->only(["index", "store"])
+    ->only(["index", "store", "edit", "update"])
     ->middleware(["auth","verified"]);
 require __DIR__.'/auth.php';
