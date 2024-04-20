@@ -4,15 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Chirp;
 use Illuminate\Http\Request;
+// test the index method by returning a resource
+// use Illuminate\Http\Response;
+
+// now test the Controller by returning a view
+use Illuminate\View\View;
 
 class ChirpController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    // public function index(): Response
+    // {
+    //     return response("Hello world!");
+    // }
+    public function index(): View
     {
-        //
+        return view("chirps.index");
     }
 
     /**
