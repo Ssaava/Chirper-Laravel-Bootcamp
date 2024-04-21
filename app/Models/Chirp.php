@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Events\ChirpCreated;
 // import the belongs to relationship
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -22,5 +22,10 @@ class Chirp extends Model
     // to enable mass assignment to the message
     protected $fillable = [
         'message'
+    ];
+
+    // dispatch the event
+    protected $dispatchesEvents = [
+        'created' => ChirpCreated::class,
     ];
 }
